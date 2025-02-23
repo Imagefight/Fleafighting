@@ -7,8 +7,7 @@ public partial class Player : CharacterBody2D
 	[Export] public AnimatedSprite2D Sprite {protected set; get;}
 	[Export] protected int MoveSpeed;
 
-	public bool  Deflecting    = false, // The Player is currently deflecting incoming projectiles
-				 ControlLock   = false, // Player Controls are Locked
+	public bool  ControlLock   = false, // Player Controls are Locked
 				 DirectionLock = false, // The Player's Direction is locked
 				 Invincible    = false; // The Player is invincible
 	public float Direction {get; set;} = 0; // Direction player is facing
@@ -23,10 +22,18 @@ public partial class Player : CharacterBody2D
 	{
 	}
 
-	// Move the player using a multiplier
-	public void MovePlayer(float magnitude)
-	{ 
-		Velocity = Transform.X * InputDirection() * (MoveSpeed * magnitude);
+    public override void _PhysicsProcess(double delta)
+    {
+        MovePlayer();
+    }
+
+    // Move the player using a multiplier
+    public void MovePlayer()
+	{
+		Velocity = 	Input.IsActionPressed("ShiftLT") ? // Is Left Shift Held?
+					InputDirection() * (MoveSpeed/2) : // Half the Movement speed if true
+					InputDirection() *  MoveSpeed;	   // Do normal Movement speed if not
+		
 		MoveAndSlide(); // Moves Player
 	}
 
@@ -35,12 +42,14 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 inputDirection = Input.GetVector("ArrowLT", "ArrowRT", "ArrowUP", "ArrowDN");
 
+		/*
 		if (!DirectionLock)
 			Direction = Input.GetAxis("ArrowLT", "ArrowRT");
 		
 		if 		(Direction >  0) { Sprite.FlipH = true;  } 
 		else if (Direction <= 0) { Sprite.FlipH = false; }
-		
+		*/
+
 		return inputDirection;
 	}
 }

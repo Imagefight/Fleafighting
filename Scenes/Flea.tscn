@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://xy3oyjemeeyw"]
+[gd_scene load_steps=4 format=3 uid="uid://xy3oyjemeeyw"]
 
+[ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_re6sa"]
 [ext_resource type="Texture2D" uid="uid://bwv7u160jw1ej" path="res://icon.svg" id="1_upoge"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_we8c4"]
@@ -13,8 +14,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 motion_mode = 1
+script = ExtResource("1_re6sa")
+MoveSpeed = 2000
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_we8c4")
