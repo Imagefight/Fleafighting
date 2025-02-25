@@ -3,12 +3,17 @@ using System;
 
 public partial class Bullets : Node
 {
-	Vector2 movement_vector; // Movement Direction
-	Vector2 current_postion; // Current Position
-	float lifetime = 0, // How long the bullet has existed
-		  speed = 0, // Speed of the bullet (duh)
-		  image_offset = 0, // Used for switching bullet textures (IDK if we will do this but putting the property here anyways)
-		  animation_lifetime = 0; // Keeps track of the length since the last switch
+	public Vector2 MovementVector; // Movement Direction
+	public Vector2 CurrentPostion; // Current Position
+	public float Lifetime = 0, // How long the bullet has existed
+		  		 Speed = 0, // Speed of the bullet (duh)
+		  		 ImageOffset = 0, // Used for switching bullet textures (IDK if we will do this but putting the property here anyways)
+		  		 AnimationLifetime = 0; // Keeps track of the length since the last switch
+
+	public void RegisterBullet(Vector2 Movement, Vector2 Position)
+	{
+		
+	}
 
 
 	// Called when the node enters the scene tree for the first time.
