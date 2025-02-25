@@ -6,3 +6,5 @@
 
 [node name="Player" parent="." instance=ExtResource("1_hum4v")]
 position = Vector2(580, 328)
+MoveSpeed = 2000.0
+FocusMagnitude = 0.5
