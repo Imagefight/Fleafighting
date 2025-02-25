@@ -3,7 +3,7 @@ using System;
 
 public partial class Bullets : Node
 {
-	Vector2 movement_vectors; // Movement Direction
+	Vector2 movement_vector; // Movement Direction
 	Vector2 current_postion; // Current Position
 	float lifetime = 0, // How long the bullet has existed
 		  speed = 0, // Speed of the bullet (duh)
