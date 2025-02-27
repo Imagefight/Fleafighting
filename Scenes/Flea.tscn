@@ -21,6 +21,7 @@ script = ExtResource("1_re6sa")
 stateMachine = NodePath("StateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_we8c4")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("Player")]
