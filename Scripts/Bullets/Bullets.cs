@@ -3,6 +3,8 @@ using System;
 
 public partial class Bullets : Node
 {
+
+	public Rid ShapeId; //ID used to communicate with the physics server
 	public Vector2 MovementVector; // Movement Direction
 	public Vector2 CurrentPostion; // Current Position
 	public float Lifetime = 0, // How long the bullet has existed
@@ -10,9 +12,12 @@ public partial class Bullets : Node
 		  		 ImageOffset = 0, // Used for switching bullet textures (IDK if we will do this but putting the property here anyways)
 		  		 AnimationLifetime = 0; // Keeps track of the length since the last switch
 
-	public void RegisterBullet(Vector2 Movement, Vector2 Position)
+	public void RegisterBullet(Vector2 Movement, float Speed = 200) //Bullet Constructor (WIP)
 	{
-		
+		Bullets Bullet = new Bullets();
+		Bullet.MovementVector = Movement;
+		Bullet.Speed = Speed;
+
 	}
 
 
