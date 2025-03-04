@@ -9,6 +9,7 @@ public partial class Player : CharacterBody2D
 	[Export] public float FocusMagnitude;
 	[Export] private PlayerSM stateMachine;
 
+	[Export] public int LimitLeft, LimitRight, LimitBottom, LimitTop;
 
 	public bool  ControlLock   = false, // Player Controls are Locked
 				 DirectionLock = false, // The Player's Direction is locked
@@ -40,6 +41,7 @@ public partial class Player : CharacterBody2D
 	{
 		Velocity = 	InputDirection() * (MoveSpeed * magnitude);
 		MoveAndSlide(); // Moves Player
+		ClampPlayer();
 	}
 
 	// Update the player's Movement direction
@@ -58,9 +60,11 @@ public partial class Player : CharacterBody2D
 		return inputDirection;
 	}
 
-	// Send Inputs to State Machine
-	private void SendToStateMachine()
+	private void ClampPlayer()
 	{
-		
+		Position = new Vector2(
+		Mathf.Clamp(Position.X, LimitLeft, LimitRight),
+		Mathf.Clamp(Position.Y, LimitTop,  LimitBottom)
+		);
 	}
 }

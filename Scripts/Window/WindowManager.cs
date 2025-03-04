@@ -29,8 +29,7 @@ public partial class WindowManager : Node
 		GD.Print(scale);
 		GD.Print(defaultSize);
 
-		ScaleY();
-		ScaleX();
+		Scale();
 
 		Reposition();
 		Resize();
@@ -83,7 +82,13 @@ public partial class WindowManager : Node
 			ignoreY = false;
 	}
 
-	private void GetScale() => scale = ( (Vector2) currentSize) / ( (Vector2) defaultSize) ;
+	private void Scale() 
+	{
+		ScaleX(); 
+		ScaleY();
+	}
+
+	private void GetScale() => scale = ( (Vector2) currentSize ) / ( (Vector2) defaultSize ) ;
 	private void GetSize() => currentSize = DisplayServer.WindowGetSize();
 	private void SetSize(int width, int height) => DisplayServer.WindowSetSize(new Vector2I(width, height));
 	private void UpdatePreviousSize() => previousSize = currentSize;

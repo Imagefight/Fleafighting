@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://cc2ryngvr0vlx"]
 
 [ext_resource type="Texture2D" uid="uid://crq2vx01kyaca" path="res://Assets/TileTest.png" id="1_47vul"]
-[ext_resource type="Script" path="res://Scenes/TestLevels/ScrollTest.cs" id="1_sel0u"]
+[ext_resource type="Script" path="res://Scripts/Levels/ScrollTest.cs" id="1_bycos"]
 [ext_resource type="Texture2D" uid="uid://cp7cj6yk05ahp" path="res://Assets/BorderTest.png" id="2_1xrj7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbv2o"]
@@ -18,7 +18,7 @@ sources/1 = SubResource("TileSetAtlasSource_g5ppw")
 
 [node name="Parallax2D" type="Parallax2D" node_paths=PackedStringArray("tileMap")]
 repeat_size = Vector2(0, 224)
-script = ExtResource("1_sel0u")
+script = ExtResource("1_bycos")
 cameraVelocity = Vector2(0, 50)
 tileMap = NodePath("Background")
 
