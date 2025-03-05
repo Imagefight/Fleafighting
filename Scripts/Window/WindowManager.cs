@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-/* WindowManager.cs
+/* WindowManager.cs [DEPRICATED]
  * Used to keep aspect ratio when resizing window
  * TODO: Breaks at certain percentages, fix later
  */
