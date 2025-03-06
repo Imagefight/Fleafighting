@@ -25,7 +25,21 @@ public partial class BulletSpawner : Node2D
 	
 	public override void _Draw()
 	{
+		Vector2I offset = frames[0].GetSize() / 2;
 		
+		for (int iterator = 0; iterator <= bullets.Count; iterator++)
+		{
+			Bullet bullet = (Bullet) bullets[iterator];
+
+			if (bullet.AnimationLifetime >= imageChangeOffset)
+			{
+				bullet.ImageOffset += 1;
+				bullet.AnimationLifetime = 0.0f;
+
+				if (bullet.ImageOffset >= )
+			}
+		}
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
