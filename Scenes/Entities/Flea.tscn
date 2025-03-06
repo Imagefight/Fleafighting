@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://xy3oyjemeeyw"]
+[gd_scene load_steps=6 format=3 uid="uid://xy3oyjemeeyw"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_re6sa"]
 [ext_resource type="Texture2D" uid="uid://bwv7u160jw1ej" path="res://icon.svg" id="1_upoge"]
@@ -15,14 +15,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rqugc"]
+radius = 2.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("stateMachine")]
 motion_mode = 1
 script = ExtResource("1_re6sa")
 stateMachine = NodePath("StateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_we8c4")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("Player")]
 script = ExtResource("3_8pmb8")
 Player = NodePath("..")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rqugc")
