@@ -5,7 +5,11 @@ public partial class Player : CharacterBody2D
 {
 	[ExportCategory("Player Attributes")]
 	[Export] public AnimatedSprite2D Sprite {protected set; get;}
-	[Export] protected int MoveSpeed;
+	[Export] protected float MoveSpeed; 
+	[Export] public float FocusMagnitude;
+	[Export] private PlayerSM stateMachine;
+
+	[Export] public int LimitLeft, LimitRight, LimitBottom, LimitTop;
 
 	public bool  ControlLock   = false, // Player Controls are Locked
 				 DirectionLock = false, // The Player's Direction is locked
@@ -13,34 +17,37 @@ public partial class Player : CharacterBody2D
 	public float Direction {get; set;} = 0; // Direction player is facing
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
+	public override void _Ready(){}
+	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	public override void _Process(double delta) {}
 
-    public override void _PhysicsProcess(double delta)
+    public override void _UnhandledInput(InputEvent @event)
     {
-        MovePlayer();
+		if (!ControlLock)
+			stateMachine._Input(@event);
     }
 
-    // Move the player using a multiplier
-    public void MovePlayer()
+    public override void _PhysicsProcess(double delta){}
+
+    // Move the player
+    public void Move()
 	{
-		Velocity = 	Input.IsActionPressed("ShiftLT") ? // Is Left Shift Held?
-					InputDirection() * (MoveSpeed/2) : // Half the Movement speed if true
-					InputDirection() *  MoveSpeed;	   // Do normal Movement speed if not
-		
+		Move(1);
+	}
+
+	// Move the player by a certain magnitude
+	public void Move(float magnitude)
+	{
+		Velocity = 	InputDirection() * (MoveSpeed * magnitude);
 		MoveAndSlide(); // Moves Player
+		ClampPlayer();
 	}
 
 	// Update the player's Movement direction
 	private Vector2 InputDirection()
 	{
-		Vector2 inputDirection = Input.GetVector("ArrowLT", "ArrowRT", "ArrowUP", "ArrowDN");
+		Vector2 inputDirection = Input.GetVector("MoveLT", "MoveRT", "MoveUP", "MoveDN");
 
 		/*
 		if (!DirectionLock)
@@ -51,5 +58,13 @@ public partial class Player : CharacterBody2D
 		*/
 
 		return inputDirection;
+	}
+
+	private void ClampPlayer()
+	{
+		Position = new Vector2(
+		Mathf.Clamp(Position.X, LimitLeft, LimitRight),
+		Mathf.Clamp(Position.Y, LimitTop,  LimitBottom)
+		);
 	}
 }
